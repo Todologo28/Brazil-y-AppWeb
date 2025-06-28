@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primitivas de Computación Gráfica (Mejorado)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>🎯 Primitivas de Computación Gráfica</h1>
+        <p>Implementación interactiva de algoritmos fundamentales</p>
+    </header>
+
+    <div class="menu-container">
+        <nav class="menu">
+            <div class="menu-item active" data-primitive="punto">📍 Punto</div>
+            <div class="menu-item" data-primitive="elipse">⭕ Elipse</div>
+            <div class="menu-item" data-primitive="circunferencia">🔵 Circunferencia</div>
+            <div class="menu-item" data-primitive="dda">📏 DDA</div>
+            <div class="menu-item" data-primitive="bresenham">⚡ Bresenham</div>
+        </nav>
+
+        <div class="content">
+            <div id="punto-content" class="primitive-content">
+                <div class="algorithm-info"><h4>🎯 Algoritmo de Punto</h4><p>Representa un punto en el plano cartesiano con coordenadas (x, y).</p></div>
+                <div class="controls"><div class="control-group"><h3>Coordenadas</h3><div class="input-row"><label>X:</label><input type="number" id="punto-x" value="5"></div><div class="input-row"><label>Y:</label><input type="number" id="punto-y" value="3"></div></div><div class="control-group"><h3>Acción</h3><button id="btn-draw-punto" class="btn">🎯 Dibujar Punto</button></div></div>
+            </div>
+
+            <div id="elipse-content" class="primitive-content" style="display: none;">
+                <div class="algorithm-info"><h4>⭕ Algoritmo de Elipse</h4><p>Dibuja una elipse definida por sus semiejes mayor (rx) y menor (ry).</p></div>
+                <div class="controls"><div class="control-group"><h3>Parámetros</h3><div class="input-row"><label>Centro X:</label><input type="number" id="elipse-cx" value="0"></div><div class="input-row"><label>Centro Y:</label><input type="number" id="elipse-cy" value="0"></div><div class="input-row"><label>Radio X:</label><input type="number" id="elipse-rx" value="8" min="0.1"></div><div class="input-row"><label>Radio Y:</label><input type="number" id="elipse-ry" value="5" min="0.1"></div></div><div class="control-group"><h3>Acción</h3><button id="btn-draw-elipse" class="btn">⭕ Dibujar Elipse</button></div></div>
+            </div>
+
+            <div id="circunferencia-content" class="primitive-content" style="display: none;">
+                <div class="algorithm-info"><h4>🔵 Algoritmo de Circunferencia</h4><p>Dibuja una circunferencia definida por su centro y radio.</p></div>
+                <div class="controls"><div class="control-group"><h3>Parámetros</h3><div class="input-row"><label>Centro X:</label><input type="number" id="circulo-cx" value="0"></div><div class="input-row"><label>Centro Y:</label><input type="number" id="circulo-cy" value="0"></div><div class="input-row"><label>Radio:</label><input type="number" id="circulo-r" value="7" min="0.1"></div></div><div class="control-group"><h3>Acción</h3><button id="btn-draw-circunferencia" class="btn">🔵 Dibujar Círculo</button></div></div>
+            </div>
+
+            <div id="dda-content" class="primitive-content" style="display: none;">
+                <div class="algorithm-info"><h4>📏 Algoritmo DDA</h4><p>Algoritmo incremental para dibujar líneas rectas usando punto flotante.</p></div>
+                <div class="controls"><div class="control-group"><h3>Coordenadas</h3><div class="input-row"><label>X1:</label><input type="number" id="dda-x1" value="-8"></div><div class="input-row"><label>Y1:</label><input type="number" id="dda-y1" value="-5"></div><div class="input-row"><label>X2:</label><input type="number" id="dda-x2" value="8"></div><div class="input-row"><label>Y2:</label><input type="number" id="dda-y2" value="5"></div></div><div class="control-group"><h3>Acción</h3><button id="btn-draw-dda" class="btn">📏 Dibujar Línea DDA</button></div></div>
+            </div>
+
+            <div id="bresenham-content" class="primitive-content" style="display: none;">
+                <div class="algorithm-info"><h4>⚡ Algoritmo de Bresenham</h4><p>Algoritmo eficiente para dibujar líneas usando solo aritmética entera.</p></div>
+                <div class="controls"><div class="control-group"><h3>Coordenadas</h3><div class="input-row"><label>X1:</label><input type="number" id="bres-x1" value="-8"></div><div class="input-row"><label>Y1:</label><input type="number" id="bres-y1" value="5"></div><div class="input-row"><label>X2:</label><input type="number" id="bres-x2" value="8"></div><div class="input-row"><label>Y2:</label><input type="number" id="bres-y2" value="-5"></div></div><div class="control-group"><h3>Acción</h3><button id="btn-draw-bresenham" class="btn">⚡ Dibujar Línea Bresenham</button></div></div>
+            </div>
+
+            <div class="graph-container">
+                <div id="grafico" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

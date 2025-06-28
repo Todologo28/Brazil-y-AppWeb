@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandera de Brasil - Canvas y SVG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+
+        .flags-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .flag-section {
+            text-align: center;
+        }
+
+        .flag-section h2 {
+            color: #34495e;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        canvas {
+            border: 3px solid #ecf0f1;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        canvas:hover {
+            transform: scale(1.02);
+        }
+
+        svg {
+            border: 3px solid #ecf0f1;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        svg:hover {
+            transform: scale(1.02);
+        }
+
+        .info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 5px solid #27ae60;
+        }
+
+        .info h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+
+        .colors-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-square {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .flags-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            canvas, svg {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1> Bandera de Brasil</h1>
+    <p class="subtitle">Implementación con Canvas y SVG</p>
+
+    <div class="flags-container">
+        <div class="flag-section">
+            <h2>Canvas </h2>
+            <canvas id="canvasBrasil" width="600" height="420"></canvas>
+        </div>
+
+        <div class="flag-section">
+            <h2>SVG </h2>
+            <svg width="600" height="420" viewBox="0 0 600 420">
+                <!-- Fondo verde -->
+                <rect width="600" height="420" fill="#009739"/>
+
+                <!-- Rombo amarillo -->
+                <polygon points="300,60 540,210 300,360 60,210" fill="#FEDD00"/>
+
+                <!-- Círculo azul -->
+                <circle cx="300" cy="210" r="90" fill="#012169"/>
+
+                <!-- Banda con texto "ORDEM E PROGRESSO" -->
+                <path d="M 220 210 Q 300 180 380 210" stroke="#FEDD00" stroke-width="3" fill="none"/>
+
+                <!-- Estrellas (representativas) -->
+                <g fill="white">
+                    <!-- Estrellas principales -->
+                    <circle cx="270" cy="190" r="2"/>
+                    <circle cx="290" cy="185" r="1.5"/>
+                    <circle cx="310" cy="190" r="2"/>
+                    <circle cx="330" cy="195" r="1.5"/>
+                    <circle cx="320" cy="220" r="1.5"/>
+                    <circle cx="300" cy="235" r="2"/>
+                    <circle cx="280" cy="220" r="1.5"/>
+                    <circle cx="250" cy="210" r="1.5"/>
+                    <circle cx="260" cy="230" r="1"/>
+                    <circle cx="340" cy="210" r="1"/>
+                    <circle cx="315" cy="175" r="1"/>
+                    <circle cx="285" cy="175" r="1"/>
+                </g>
+
+                <!-- Texto ORDEM E PROGRESSO (simplificado) -->
+                <text x="300" y="215" text-anchor="middle" fill="#FEDD00" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ORDEM E PROGRESSO</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="info">
+        <h3>Información sobre la Bandera de Brasil</h3>
+        <p>La bandera de Brasil fue adoptada el 19 de noviembre de 1889. Sus elementos representan:</p>
+        <ul>
+            <li><strong>Verde:</strong> Los bosques brasileños</li>
+            <li><strong>Amarillo:</strong> Las riquezas minerales del país</li>
+            <li><strong>Azul:</strong> El cielo de Río de Janeiro el 15 de noviembre de 1889</li>
+            <li><strong>Estrellas:</strong> Representan los estados y el Distrito Federal</li>
+            <li><strong>"Ordem e Progresso":</strong> Lema positivista que significa "Orden y Progreso"</li>
+        </ul>
+
+        <div class="colors-info">
+            <div class="color-item">
+                <div class="color-square" style="background-color: #009739;"></div>
+                <span><strong>Verde:</strong> #009739</span>
+            </div>
+            <div class="color-item">
+                <div class="color-square" style="background-color: #FEDD00;"></div>
+                <span><strong>Amarillo:</strong> #FEDD00</span>
+            </div>
+            <div class="color-item">
+                <div class="color-square" style="background-color: #012169;"></div>
+                <span><strong>Azul:</strong> #012169</span>
+            </div>
+            <div class="color-item">
+                <div class="color-square" style="background-color: white;"></div>
+                <span><strong>Blanco:</strong> #FFFFFF</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función para dibujar la bandera de Brasil en Canvas
+    function dibujarBanderaBrasil() {
+        const canvas = document.getElementById('canvasBrasil');
+        const ctx = canvas.getContext('2d');
+
+        // Limpiar canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Colores oficiales de la bandera de Brasil
+        const verde = '#009739';
+        const amarillo = '#FEDD00';
+        const azul = '#012169';
+        const blanco = '#FFFFFF';
+
+        // Fondo verde
+        ctx.fillStyle = verde;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Rombo amarillo
+        ctx.fillStyle = amarillo;
+        ctx.beginPath();
+        ctx.moveTo(300, 60);   // Punto superior
+        ctx.lineTo(540, 210);  // Punto derecho
+        ctx.lineTo(300, 360);  // Punto inferior
+        ctx.lineTo(60, 210);   // Punto izquierdo
+        ctx.closePath();
+        ctx.fill();
+
+        // Círculo azul
+        ctx.fillStyle = azul;
+        ctx.beginPath();
+        ctx.arc(300, 210, 90, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Banda amarilla curva
+        ctx.strokeStyle = amarillo;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(220, 210);
+        ctx.quadraticCurveTo(300, 180, 380, 210);
+        ctx.stroke();
+
+        // Dibujar estrellas
+        ctx.fillStyle = blanco;
+        const estrellas = [
+            {x: 270, y: 190, r: 2},
+            {x: 290, y: 185, r: 1.5},
+            {x: 310, y: 190, r: 2},
+            {x: 330, y: 195, r: 1.5},
+            {x: 320, y: 220, r: 1.5},
+            {x: 300, y: 235, r: 2},
+            {x: 280, y: 220, r: 1.5},
+            {x: 250, y: 210, r: 1.5},
+            {x: 260, y: 230, r: 1},
+            {x: 340, y: 210, r: 1},
+            {x: 315, y: 175, r: 1},
+            {x: 285, y: 175, r: 1},
+            {x: 275, y: 205, r: 1},
+            {x: 325, y: 205, r: 1},
+            {x: 300, y: 195, r: 1.5}
+        ];
+
+        estrellas.forEach(estrella => {
+            ctx.beginPath();
+            ctx.arc(estrella.x, estrella.y, estrella.r, 0, 2 * Math.PI);
+            ctx.fill();
+        });
+
+        // Texto "ORDEM E PROGRESSO"
+        ctx.fillStyle = amarillo;
+        ctx.font = 'bold 12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('ORDEM E PROGRESSO', 300, 215);
+
+        // Añadir efecto de brillo
+        const gradient = ctx.createRadialGradient(300, 210, 0, 300, 210, 90);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(300, 210, 90, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    // Dibujar la bandera cuando se carga la página
+    window.addEventListener('load', dibujarBanderaBrasil);
+
+    // Redibujar si se redimensiona la ventana
+    window.addEventListener('resize', dibujarBanderaBrasil);
+</script>
+</body>
+</html>
+
+
